@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2013 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.android.scheduler"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="21" />
+
+    <permission
+        android:name="com.example.Test_GoogleMap.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.Test_GoogleMap.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@drawable/images"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light" >
+
+        <!--
+        <uses-library 
+	    android:required="true" 
+	    android:name="com.google.android.maps" />
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCYxA9xjH_roEKFXv-GA9TtY7boYAk-19Q" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:uiOptions="splitActionBarWhenNarrow" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".SampleAlarmReceiver" >
+        </receiver>
+        <receiver
+            android:name=".SampleBootReceiver"
+            android:enabled="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" >
+                </action>
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".SampleSchedulingService" />
+        <service android:name=".GPSTracker" />
+        <service android:name=".ListService" />
+
+        <activity
+            android:name=".SetAlarmActivity"
+            android:label="@string/title_activity_set_alarm"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.scheduler.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SetLocationActivity"
+            android:label="@string/title_activity_set_location"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.scheduler.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".FindRestaurantActivity"
+            android:label="@string/title_activity_find_restaurant" >
+        </activity>
+        <activity
+            android:name=".MealsActivity"
+            android:label="@string/title_activity_meals" >
+        </activity>
+        <activity
+            android:name=".LunchActivity"
+            android:label="@string/title_activity_lunch" >
+        </activity>
+        <activity
+            android:name=".DinnerActivity"
+            android:label="@string/title_activity_dinner" >
+        </activity>
+    </application>
+
+</manifest>
